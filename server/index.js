@@ -9,14 +9,17 @@ const JWT_SECRET = process.env.JWT_SECRET || 'internet-magazin-secret-key';
 const TOKEN_EXPIRES = '24h';
 const AUTH_COOKIE = 'auth_token';
 const isProduction = process.env.NODE_ENV === 'production';
+const corsOrigin = process.env.CORS_ORIGIN; // URL фронта на Vercel, например https://ecommerce-shop-xxx.vercel.app
 
 app.use(cors({
   origin: (origin, cb) => {
     if (!origin || /^https?:\/\/localhost(:\d+)?$/.test(origin)) {
-      cb(null, true);
-    } else {
-      cb(null, false);
+      return cb(null, true);
     }
+    if (corsOrigin && origin === corsOrigin) {
+      return cb(null, true);
+    }
+    cb(null, false);
   },
   credentials: true,
 }));

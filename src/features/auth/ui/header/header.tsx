@@ -43,7 +43,7 @@ export function Header() {
             type="button"
             className="header__theme-toggle"
             onClick={toggleTheme}
-            title={theme === 'light' ? 'Тёмная тема' : 'Светлая тема'}
+            title={theme === 'light' ? '☀️' : '🌙'}
             aria-label={theme === 'light' ? 'Включить тёмную тему' : 'Включить светлую тему'}
           >
             {theme === 'light' ? <MoonIcon /> : <SunIcon />}
