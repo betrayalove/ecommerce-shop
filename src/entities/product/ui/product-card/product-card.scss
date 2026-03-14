@@ -1,0 +1,68 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__image-wrap {
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: $radius-button;
+    margin-bottom: $space-16;
+    background: #f1f5f9;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__title {
+    @include typography-h2;
+    margin: 0 0 $space-8;
+    color: $color-text-primary;
+    flex: 1;
+  }
+
+  &__price {
+    @include typography-body;
+    font-weight: 600;
+    color: $color-primary;
+    margin: 0 0 $space-16;
+  }
+}
+
+[data-theme='dark'] .product-card {
+  color: $color-text-primary-dark;
+
+  .product-card__link {
+    color: inherit;
+
+    &:hover .product-card__title {
+      color: $color-primary;
+    }
+  }
+
+  .product-card__title {
+    color: $color-text-primary-dark;
+  }
+
+  .product-card__price {
+    color: $color-primary;
+  }
+
+  .product-card__image-wrap {
+    background: $color-bg-dark;
+  }
+}

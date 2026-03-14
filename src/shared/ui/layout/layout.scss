@@ -1,0 +1,18 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $color-bg-light;
+
+  &__main {
+    flex: 1;
+    padding: $space-24 0 $space-48;
+  }
+}
+
+[data-theme='dark'] .layout {
+  background-color: $color-bg-dark;
+}

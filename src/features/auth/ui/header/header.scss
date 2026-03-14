@@ -1,0 +1,117 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.header {
+  background-color: $color-surface-light;
+  box-shadow: $shadow-card;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  &__container {
+    @include container;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-16;
+    padding-top: $space-16;
+    padding-bottom: $space-16;
+  }
+
+  &__logo {
+    @include typography-h2;
+    color: $color-primary;
+    text-decoration: none;
+    font-weight: 700;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: $space-16;
+    flex-wrap: wrap;
+  }
+
+  &__link {
+    @include typography-body;
+    color: $color-text-primary;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-primary;
+    }
+
+    &--cart {
+      position: relative;
+    }
+  }
+
+  &__cart-count {
+    margin-left: 4px;
+    background: $color-primary;
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+  }
+
+  &__user {
+    @include typography-body;
+    color: $color-text-secondary;
+  }
+
+  &__theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    border-radius: $radius-button;
+    background: transparent;
+    color: $color-text-primary;
+    cursor: pointer;
+    transition: color 0.2s, background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.06);
+      color: $color-primary;
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+[data-theme='dark'] .header {
+  background-color: $color-surface-dark;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+
+  .header__link {
+    color: $color-text-primary-dark;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+
+  .header__user {
+    color: $color-text-secondary;
+  }
+
+  .header__theme-toggle {
+    color: $color-text-primary-dark;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: $color-primary;
+    }
+  }
+}

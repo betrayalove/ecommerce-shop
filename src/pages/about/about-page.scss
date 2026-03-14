@@ -1,0 +1,21 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.about-page {
+  &__container {
+    @include container;
+  }
+
+  &__title {
+    @include typography-h1;
+    margin: 0 0 $space-24;
+    color: $color-text-primary;
+  }
+
+  &__text {
+    @include typography-body;
+    color: $color-text-secondary;
+    margin: 0;
+    max-width: 60ch;
+  }
+}

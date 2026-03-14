@@ -1,0 +1,36 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.filters-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-16;
+  align-items: flex-end;
+  margin-bottom: $space-24;
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    gap: $space-8;
+  }
+
+  &__label {
+    @include typography-body;
+    font-size: 0.875rem;
+    color: $color-text-secondary;
+  }
+
+  &__input,
+  &__select {
+    font-family: $font-family;
+    font-size: $font-size-body;
+    padding: 8px $space-16;
+    border: 1px solid #e2e8f0;
+    border-radius: $radius-button;
+    min-width: 140px;
+  }
+
+  &__select {
+    cursor: pointer;
+  }
+}

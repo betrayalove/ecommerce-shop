@@ -1,0 +1,78 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.product-page {
+  &__container {
+    @include container;
+  }
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $space-32;
+    align-items: start;
+
+    @include respond-to(768) {
+      grid-template-columns: minmax(280px, 400px) 1fr;
+    }
+  }
+
+  &__image-wrap {
+    aspect-ratio: 4 / 3;
+    border-radius: $radius-card;
+    overflow: hidden;
+    background: #f1f5f9;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__title {
+    @include typography-h1;
+    margin: 0 0 $space-16;
+    color: $color-text-primary;
+  }
+
+  &__price {
+    @include typography-h2;
+    color: $color-primary;
+    margin: 0 0 $space-24;
+  }
+
+  &__description {
+    @include typography-body;
+    color: $color-text-secondary;
+    margin: 0 0 $space-32;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-16;
+    align-items: center;
+  }
+
+  &__quantity-label {
+    @include typography-body;
+    display: flex;
+    align-items: center;
+    gap: $space-8;
+  }
+
+  &__quantity-input {
+    width: 80px;
+    padding: 8px $space-16;
+    border: 1px solid #e2e8f0;
+    border-radius: $radius-button;
+    font-size: $font-size-body;
+  }
+}
+
+@media (max-width: 767px) {
+  .product-page__content {
+    grid-template-columns: 1fr;
+  }
+}

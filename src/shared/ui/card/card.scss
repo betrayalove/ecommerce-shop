@@ -1,0 +1,23 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.card {
+  @include card-surface(false);
+
+  &--padding-sm {
+    padding: $space-16;
+  }
+
+  &--padding-md {
+    padding: $space-24;
+  }
+
+  &--padding-lg {
+    padding: $space-32;
+  }
+}
+
+[data-theme='dark'] .card {
+  background-color: $color-surface-dark;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}

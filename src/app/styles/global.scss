@@ -1,0 +1,46 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  @include typography-body;
+  color: $color-text-primary;
+  background-color: $color-bg-light;
+  -webkit-font-smoothing: antialiased;
+}
+
+[data-theme='dark'] body {
+  color: $color-text-primary-dark;
+  background-color: $color-bg-dark;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+}

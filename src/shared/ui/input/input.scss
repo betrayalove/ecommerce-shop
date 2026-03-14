@@ -1,0 +1,44 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: $space-8;
+}
+
+.input-label {
+  @include typography-body;
+  font-weight: 500;
+  color: $color-text-primary;
+}
+
+.input {
+  font-family: $font-family;
+  font-size: $font-size-body;
+  padding: 10px $space-16;
+  border: 1px solid #e2e8f0;
+  border-radius: $radius-button;
+  background-color: $color-surface-light;
+  color: $color-text-primary;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary;
+    box-shadow: 0 0 0 3px rgba($color-primary, 0.2);
+  }
+
+  &--error {
+    border-color: $color-error;
+  }
+
+  &::placeholder {
+    color: $color-text-secondary;
+  }
+}
+
+.input-error {
+  font-size: 0.875rem;
+  color: $color-error;
+}

@@ -1,0 +1,15 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.error-block {
+  padding: $space-24;
+  background-color: rgba($color-error, 0.08);
+  border: 1px solid rgba($color-error, 0.3);
+  border-radius: $radius-card;
+
+  &__message {
+    @include typography-body;
+    color: $color-error;
+    margin: 0;
+  }
+}

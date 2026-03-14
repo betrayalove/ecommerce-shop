@@ -1,0 +1,41 @@
+// Цвета (синхронизированы с src/shared/styles/tokens.ts)
+$color-primary: #2563EB;
+$color-secondary: #7C3AED;
+$color-bg-light: #FFFFFF;
+$color-bg-dark: #020617;
+$color-surface-light: #FFFFFF;
+$color-surface-dark: #020617;
+$color-success: #16A34A;
+$color-error: #DC2626;
+$color-text-primary: #0F172A;
+$color-text-primary-dark: #E2E8F0;
+$color-text-secondary: #7C3AED;
+
+// Отступы (базис 8px)
+$space-8: 8px;
+$space-16: 16px;
+$space-24: 24px;
+$space-32: 32px;
+$space-48: 48px;
+
+// Типографика
+$font-family: 'Inter', system-ui, -apple-system, sans-serif;
+$font-size-h1: 1.75rem;
+$font-size-h2: 1.35rem;
+$font-size-body: 1rem;
+
+// Скругления
+$radius-card: 8px;
+$radius-button: 6px;
+
+// Тени
+$shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08);
+
+// Брейкпоинты
+$bp-360: 360px;
+$bp-768: 768px;
+$bp-1024: 1024px;
+$bp-1280: 1280px;
+
+// Контейнер
+$container-max-width: 1280px;

@@ -1,0 +1,14 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+
+.login-page {
+  &__container {
+    @include container;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  &__card {
+    margin-top: $space-32;
+  }
+}
