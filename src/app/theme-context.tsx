@@ -13,14 +13,16 @@ type Theme = 'light' | 'dark';
 
 function getInitialTheme(): Theme {
   if (typeof window === 'undefined') return 'light';
-  const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
-  if (stored === 'light' || stored === 'dark') return stored;
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY) as Theme | null;
+    if (stored === 'light' || stored === 'dark') return stored;
+  } catch { /* Theme still works in memory when browser storage is unavailable. */ }
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 function applyTheme(theme: Theme) {
   document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem(STORAGE_KEY, theme);
+  try { localStorage.setItem(STORAGE_KEY, theme); } catch { /* Storage may be blocked or full. */ }
 }
 
 type ThemeContextValue = {

@@ -54,3 +54,17 @@ test('corrupted cart does not crash the page and a valid cart survives reload', 
   await page.reload();
   await expect(page.getByLabel('Количество: Смартфон X1')).toHaveValue('1');
 });
+
+test('blocked browser storage keeps catalog, theme and in-memory cart usable', async ({ page }) => {
+  await page.addInitScript(() => {
+    Storage.prototype.getItem = () => { throw new DOMException('Storage is blocked', 'SecurityError'); };
+    Storage.prototype.setItem = () => { throw new DOMException('Storage is blocked', 'SecurityError'); };
+  });
+  await page.goto('/catalog');
+  await page.getByRole('button', { name: 'В корзину', exact: true }).first().click();
+  await expect(page.getByRole('alert')).toContainText('браузер не разрешил сохранить данные');
+  await page.getByRole('button', { name: 'Включить тёмную тему', exact: true }).click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await page.getByRole('link', { name: /корзина/i }).click();
+  await expect(page.getByText('Смартфон X1', { exact: true })).toBeVisible();
+});
