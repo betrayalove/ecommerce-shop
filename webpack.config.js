@@ -76,7 +76,8 @@ module.exports = (env, argv) => {
   ].filter(Boolean),
   devServer: {
     static: { directory: path.join(__dirname, 'public') },
-    port: 4173,
+    port: Number(process.env.WEB_PORT) || 4173,
+    proxy: [{ context: ['/api'], target: process.env.API_ORIGIN || `http://localhost:${process.env.PORT || 3080}`, changeOrigin: false }],
     hot: true,
     historyApiFallback: true,
     open: false,

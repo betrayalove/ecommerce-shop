@@ -62,9 +62,10 @@ export function ProductPage() {
                 <input
                   type="number"
                   min={1}
+                  max={999}
                   value={quantity}
                   onChange={(e) =>
-                    setQuantity(Math.max(1, parseInt(e.target.value, 10) || 1))
+                    setQuantity(Math.min(999, Math.max(1, parseInt(e.target.value, 10) || 1)))
                   }
                   className="product-page__quantity-input"
                 />

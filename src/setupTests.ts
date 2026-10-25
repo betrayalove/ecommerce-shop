@@ -1,3 +1,5 @@
+import { TextEncoder, TextDecoder } from 'node:util';
+Object.assign(globalThis, { TextEncoder, TextDecoder });
 import '@testing-library/jest-dom';
 
 // RTK Query требует fetch в окружении (Jest/Node его нет по умолчанию)

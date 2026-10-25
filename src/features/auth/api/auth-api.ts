@@ -1,7 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 import { baseQuery } from '@/shared/api/base-query';
 import type { User } from '@/entities/user/model/types';
-import { setCredentials } from '../model/auth-slice';
+import { logout as clearSession, setCredentials } from '../model/auth-slice';
 
 export interface LoginRequest {
   email: string;
@@ -15,6 +15,7 @@ export interface AuthResponse {
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery,
+  tagTypes: ['Session'],
   endpoints: (builder) => ({
     login: builder.mutation<AuthResponse, LoginRequest>({
       query: (body) => ({
@@ -22,6 +23,7 @@ export const authApi = createApi({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['Session'],
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
@@ -35,6 +37,7 @@ export const authApi = createApi({
         method: 'POST',
         body,
       }),
+      invalidatesTags: ['Session'],
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
@@ -42,7 +45,14 @@ export const authApi = createApi({
         } catch {}
       },
     }),
+    logout: builder.mutation<{ ok: boolean }, void>({
+      query: () => ({ url: '/auth/logout', method: 'POST' }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try { await queryFulfilled; dispatch(clearSession()); } catch {}
+      },
+    }),
     getMe: builder.query<User, void>({
+      providesTags: ['Session'],
       query: () => '/auth/me',
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
@@ -54,4 +64,4 @@ export const authApi = createApi({
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useGetMeQuery } = authApi;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useGetMeQuery } = authApi;

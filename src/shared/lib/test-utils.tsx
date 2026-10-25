@@ -7,12 +7,7 @@ import { store } from '@/app/store';
 function AllTheProviders({ children }: { children: ReactNode }) {
   return (
     <Provider store={store}>
-      <MemoryRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true,
-      }}
-    >
+      <MemoryRouter>
       {children}
     </MemoryRouter>
     </Provider>

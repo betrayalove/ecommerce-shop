@@ -38,8 +38,19 @@ test.describe('Корзина', () => {
     await page.getByRole('button', { name: /в корзину/i }).first().click();
     await page.goto('/cart');
     await page.locator('input[type="number"]').first().fill('3');
-    await expect(page.getByText(/89\s*970/)).toBeVisible();
+    await expect(page.locator('.cart-page__total').getByText(/89\s*970/)).toBeVisible();
     await page.getByRole('button', { name: /удалить/i }).first().click();
     await expect(page.getByText('Корзина пуста')).toBeVisible();
   });
+});
+
+test('corrupted cart does not crash the page and a valid cart survives reload', async ({ page }) => {
+  await page.goto('/catalog');
+  await page.evaluate(() => localStorage.setItem('cart', JSON.stringify([null, { quantity: -1 }])));
+  await page.reload();
+  await page.getByRole('button', { name: 'В корзину', exact: true }).first().click();
+  await page.goto('/cart');
+  await expect(page.getByText('Смартфон X1', { exact: true })).toBeVisible();
+  await page.reload();
+  await expect(page.getByLabel('Количество: Смартфон X1')).toHaveValue('1');
 });

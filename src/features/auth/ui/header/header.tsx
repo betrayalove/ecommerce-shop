@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '@/features/auth/model/auth-slice';
-import { logoutApi } from '@/shared/auth/token';
+import { authApi, useLogoutMutation } from '@/features/auth/api/auth-api';
+import { useNavigate } from 'react-router-dom';
 import type { RootState } from '@/app/store';
 import { Button } from '@/shared/ui/button/button';
 import { useTheme } from '@/app/theme-context';
@@ -22,14 +22,19 @@ const MoonIcon = () => (
 
 export function Header() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [logout, { isLoading: loggingOut, error: logoutError }] = useLogoutMutation();
   const { theme, toggleTheme } = useTheme();
   const user = useSelector((state: RootState) => state.auth.user);
   const cartItems = useSelector((state: RootState) => state.cart);
   const cartCount = cartItems.reduce((sum, i) => sum + i.quantity, 0);
 
   const handleLogout = async () => {
-    await logoutApi();
-    dispatch(logout());
+    try {
+      await logout().unwrap();
+      dispatch(authApi.util.resetApiState());
+      navigate('/catalog');
+    } catch { /* Keep the active session visible so the user can retry. */ }
   };
 
   return (
@@ -65,25 +70,19 @@ export function Header() {
               <span className="header__user">
                 {user.name || user.email}
               </span>
-              <Button variant="ghost" size="sm" onClick={handleLogout}>
+              <Link to="/account" className="header__link">Мой аккаунт</Link>
+              <Button variant="ghost" size="sm" onClick={handleLogout} disabled={loggingOut}>
                 Выйти
               </Button>
             </>
           ) : (
             <>
-              <Link to="/login">
-                <Button variant="ghost" size="sm">
-                  Войти
-                </Button>
-              </Link>
-              <Link to="/register">
-                <Button variant="primary" size="sm">
-                  Регистрация
-                </Button>
-              </Link>
+              <Link to="/login" className="button button--ghost button--sm">Войти</Link>
+              <Link to="/register" className="button button--primary button--sm">Регистрация</Link>
             </>
           )}
         </nav>
+        {logoutError && <p role="alert">Не удалось выйти. Попробуйте ещё раз.</p>}
       </div>
     </header>
   );

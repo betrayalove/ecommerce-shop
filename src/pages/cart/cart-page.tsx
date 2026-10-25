@@ -21,9 +21,7 @@ export function CartPage() {
             title="Корзина пуста"
             description="Добавьте товары из каталога."
           />
-          <Link to="/catalog">
-            <Button variant="primary">В каталог</Button>
-          </Link>
+          <Link to="/catalog" className="button button--primary button--md">В каталог</Link>
         </div>
       </div>
     );
@@ -49,6 +47,8 @@ export function CartPage() {
                 <div className="cart-page__item-actions">
                   <input
                     type="number"
+                    aria-label={`Количество: ${item.product.title}`}
+                    max={999}
                     min={1}
                     value={item.quantity}
                     onChange={(e) => {
@@ -56,7 +56,7 @@ export function CartPage() {
                       dispatch(
                         updateQuantity({
                           productId: item.product.id,
-                          quantity: isNaN(v) ? 1 : Math.max(1, v),
+                          quantity: isNaN(v) ? 1 : Math.min(999, Math.max(1, v)),
                         })
                       );
                     }}

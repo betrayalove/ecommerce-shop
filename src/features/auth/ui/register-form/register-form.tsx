@@ -49,6 +49,8 @@ export function RegisterForm() {
         onChange={(e) => setPassword(e.target.value)}
         required
         autoComplete="new-password"
+        minLength={6}
+        maxLength={128}
       />
       <Button type="submit" variant="primary" fullWidth disabled={isLoading}>
         {isLoading ? 'Регистрация...' : 'Зарегистрироваться'}

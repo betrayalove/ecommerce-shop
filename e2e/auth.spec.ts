@@ -28,7 +28,7 @@ test.describe('Авторизация', () => {
     await page.getByLabel(/пароль/i).fill('123456');
     await page.locator('form').getByRole('button', { name: /войти/i }).click();
     await expect(page).toHaveURL('/catalog');
-    await expect(page.getByText(/admin|admin@test.com/i)).toBeVisible();
+    await expect(page.locator('.header__user')).toHaveText('Admin');
     await expect(page.getByRole('button', { name: /выйти/i })).toBeVisible();
   });
 
@@ -64,4 +64,22 @@ test.describe('Авторизация', () => {
     await page.getByRole('button', { name: /зарегистрироваться/i }).click();
     await expect(page).toHaveURL('/catalog');
   });
+});
+
+test('cookie session survives reload and account shows the profile', async ({ page }) => {
+  await page.goto('/login');
+  await page.getByLabel(/email/i).fill('admin@test.com');
+  await page.getByLabel(/пароль/i).fill('123456');
+  await page.locator('form').getByRole('button', { name: 'Войти', exact: true }).click();
+  await expect(page).toHaveURL('/catalog');
+  await page.reload();
+  await expect(page.getByRole('button', { name: 'Выйти', exact: true })).toBeVisible();
+  await page.getByRole('link', { name: 'Мой аккаунт' }).click();
+  await expect(page.getByRole('heading', { name: 'Мой аккаунт' })).toBeVisible();
+  await expect(page.getByRole('definition').filter({ hasText: 'admin@test.com' })).toBeVisible();
+  await page.reload();
+  await expect(page).toHaveURL('/account');
+  await page.getByRole('button', { name: 'Выйти', exact: true }).click();
+  await page.goto('/account');
+  await expect(page).toHaveURL('/login');
 });

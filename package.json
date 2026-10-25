@@ -4,20 +4,23 @@
   "version": "1.0.0",
   "scripts": {
     "start": "concurrently -k -n api,web \"npm run server\" \"npm run dev\"",
-    "dev": "webpack serve",
-    "build": "webpack --mode production",
-    "preview": "npx serve dist -s",
+    "dev": "node --env-file-if-exists=.env ./node_modules/webpack-cli/bin/cli.js serve",
+    "build": "npm run typecheck && webpack --mode production",
+    "preview": "node scripts/preview.cjs",
     "test": "jest",
-    "server": "cd server && npm run start",
+    "server": "node --env-file-if-exists=.env --env-file-if-exists=server/.env server/index.js",
     "e2e": "playwright test",
-    "e2e:ui": "playwright test --ui"
+    "e2e:ui": "playwright test --ui",
+    "typecheck": "tsc --noEmit",
+    "test:server": "npm --prefix server test",
+    "setup": "npm ci && npm --prefix server ci"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^9.0.4",
-    "react-router-dom": "^6.21.0"
+    "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",
@@ -30,7 +33,7 @@
     "ts-loader": "^9.5.1",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.1.0",
+    "webpack-dev-server": "^6.1.0",
     "@playwright/test": "^1.58.2",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
@@ -43,5 +46,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "ts-jest": "^29.1.1",
     "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }
