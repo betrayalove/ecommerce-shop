@@ -32,7 +32,7 @@ E2E проверяют production-сборку на порту4373, включа
 
 ## Vercel + Render
 
-Frontend размещается на Vercel, backend — отдельным Node-сервисом Render. В браузере все REST-запросы идут на **`/api` frontend-домена**: Vercel function `api/[...path].js` пересылает запросы в Render и возвращает cookie. Поэтому сессии остаются first-party даже при блокировке сторонних cookie.
+Frontend размещается на Vercel, backend — отдельным Node-сервисом Render. В браузере все REST-запросы идут на **`/api` frontend-домена**: Vercel function `api/proxy.js` пересылает запросы в Render и возвращает cookie. Поэтому сессии остаются first-party даже при блокировке сторонних cookie.
 
 Vercel: подключить `betrayalove/ecommerce-shop`, branch `main`, Node24. `vercel.json` задаёт build/dist и SPA fallback. Переменная **`API_ORIGIN`** — HTTPS-origin backend без `/api`, например `https://ecommerce-shop-47tg.onrender.com`. Старую `VITE_API_URL` больше использовать не нужно. Gateway имеет fallback на существующее демо; при переносе задайте API_ORIGIN явно. Frontend не получает серверных секретов.
 

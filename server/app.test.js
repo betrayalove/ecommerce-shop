@@ -6,7 +6,7 @@ const { join } = require('node:path');
 const { once } = require('node:events');
 const { createApp } = require('./app');
 const { verifyPassword } = require('./users');
-const { createGateway } = require('../api/[...path].js');
+const { createGateway } = require('../api/proxy.js');
 
 const SECRET = 'integration-test-only-secret-at-least-32-bytes';
 const ORIGIN = 'https://shop-demo.vercel.app';
@@ -211,7 +211,7 @@ test('gateway forwards cookies, JSON body and query and preserves response statu
       return response;
     },
   });
-  await gateway({ method: 'POST', url: '/api/auth/register?source=demo', body: { email: 'new@example.com', password: 'test-password' }, headers: gatewayHeaders }, res);
+  await gateway({ method: 'POST', url: '/api/proxy?path=auth/register&source=demo', body: { email: 'new@example.com', password: 'test-password' }, headers: gatewayHeaders }, res);
   assert.equal(result.status, 201);
   assert.equal(result.headers['cache-control'], 'no-store');
   assert.equal(result.headers['content-type'], 'application/json');
@@ -225,7 +225,7 @@ test('gateway forwards GET without a body and preserves an upstream unauthorized
     assert.equal(init.body, undefined);
     return new Response('{"error":"Unauthorized"}', { status: 401 });
   } });
-  await gateway({ method: 'GET', url: '/api/auth/me', headers: gatewayHeaders }, res);
+  await gateway({ method: 'GET', url: '/api/proxy?path=auth/me', headers: gatewayHeaders }, res);
   assert.equal(result.status, 401);
   assert.equal(result.headers['cache-control'], 'no-store');
   assert.deepEqual(JSON.parse(result.body), { error: 'Unauthorized' });
