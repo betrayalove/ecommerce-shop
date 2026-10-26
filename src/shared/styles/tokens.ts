@@ -6,7 +6,7 @@ export const TOKENS = {
     danger: '#DC2626',
     textLight: '#0F172A',
     textDark: '#E2E8F0',
-    backgroundLight: '#FFFFFF',
+    backgroundLight: '#F8FAFC',
     backgroundDark: '#020617',
   },
   fontFamily: 'Inter, system-ui, sans-serif',

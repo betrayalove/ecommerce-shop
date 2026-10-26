@@ -1,15 +1,7 @@
-// Цвета (синхронизированы с src/shared/styles/tokens.ts)
+// Brand fills stay stable; semantic theme colors live in global.scss.
 $color-primary: #2563EB;
 $color-secondary: #7C3AED;
-$color-bg-light: #FFFFFF;
-$color-bg-dark: #020617;
-$color-surface-light: #FFFFFF;
-$color-surface-dark: #020617;
-$color-success: #16A34A;
 $color-error: #DC2626;
-$color-text-primary: #0F172A;
-$color-text-primary-dark: #E2E8F0;
-$color-text-secondary: #7C3AED;
 
 // Отступы (базис 8px)
 $space-8: 8px;
@@ -20,13 +12,13 @@ $space-48: 48px;
 
 // Типографика
 $font-family: 'Inter', system-ui, -apple-system, sans-serif;
-$font-size-h1: 1.75rem;
-$font-size-h2: 1.35rem;
+$font-size-h1: 2rem;
+$font-size-h2: 1.5rem;
 $font-size-body: 1rem;
 
 // Скругления
-$radius-card: 8px;
-$radius-button: 6px;
+$radius-card: 12px;
+$radius-button: 8px;
 
 // Тени
 $shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08);

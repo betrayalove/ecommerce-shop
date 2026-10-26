@@ -1,3 +1,4 @@
+import { ProductImage } from '@/shared/ui/product-image/product-image';
 import { Link } from 'react-router-dom';
 import type { Product } from '@/entities/product/model/types';
 import { Button } from '@/shared/ui/button/button';
@@ -15,7 +16,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
     <Card padding="sm" className="product-card">
       <Link to={`/product/${product.id}`} className="product-card__link">
         <div className="product-card__image-wrap">
-          <img
+          <ProductImage
             src={product.image}
             alt={product.title}
             className="product-card__image"

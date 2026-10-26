@@ -1,0 +1,9 @@
+@use '@/shared/styles/variables' as *;
+@use '@/shared/styles/mixins' as *;
+.account-page {
+  @include container;
+  dl { @include card-surface; padding: $space-24; max-width: 60ch; }
+  dt { color: var(--color-text-secondary); margin-top: $space-16; }
+  dt:first-child { margin-top: 0; }
+  dd { margin: $space-8 0 0; overflow-wrap: anywhere; }
+}

@@ -19,7 +19,7 @@
     overflow: hidden;
     border-radius: $radius-button;
     margin-bottom: $space-16;
-    background: #f1f5f9;
+    background: var(--color-muted);
   }
 
   &__image {
@@ -31,38 +31,14 @@
   &__title {
     @include typography-h2;
     margin: 0 0 $space-8;
-    color: $color-text-primary;
+    color: var(--color-text);
     flex: 1;
   }
 
   &__price {
     @include typography-body;
     font-weight: 600;
-    color: $color-primary;
+    color: var(--color-link);
     margin: 0 0 $space-16;
-  }
-}
-
-[data-theme='dark'] .product-card {
-  color: $color-text-primary-dark;
-
-  .product-card__link {
-    color: inherit;
-
-    &:hover .product-card__title {
-      color: $color-primary;
-    }
-  }
-
-  .product-card__title {
-    color: $color-text-primary-dark;
-  }
-
-  .product-card__price {
-    color: $color-primary;
-  }
-
-  .product-card__image-wrap {
-    background: $color-bg-dark;
   }
 }

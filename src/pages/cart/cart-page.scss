@@ -9,7 +9,7 @@
   &__title {
     @include typography-h1;
     margin: 0 0 $space-32;
-    color: $color-text-primary;
+    color: var(--color-text);
   }
 
   &__list {
@@ -27,9 +27,10 @@
     gap: $space-24;
     align-items: center;
     padding: $space-16;
-    background: $color-surface-light;
+    background: var(--color-surface);
     border-radius: $radius-card;
     box-shadow: $shadow-card;
+    border: 1px solid var(--color-border);
   }
 
   &__item-image {
@@ -46,12 +47,12 @@
   &__item-title {
     @include typography-h2;
     margin: 0 0 $space-8;
-    color: $color-text-primary;
+    color: var(--color-text);
   }
 
   &__item-price {
     @include typography-body;
-    color: $color-text-secondary;
+    color: var(--color-text-secondary);
     margin: 0 0 $space-8;
   }
 
@@ -59,12 +60,13 @@
     display: flex;
     gap: $space-8;
     align-items: center;
+    flex-wrap: wrap;
   }
 
   &__quantity-input {
     width: 64px;
     padding: 6px $space-8;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--color-border);
     border-radius: $radius-button;
     font-size: 0.9375rem;
   }
@@ -72,19 +74,26 @@
   &__item-subtotal {
     @include typography-body;
     font-weight: 600;
-    color: $color-text-primary;
+    color: var(--color-text);
     margin: 0;
   }
 
   &__footer {
     margin-top: $space-32;
     padding-top: $space-24;
-    border-top: 1px solid #e2e8f0;
+    border-top: 1px solid var(--color-border);
   }
 
   &__total {
     @include typography-h2;
     margin: 0;
-    color: $color-text-primary;
+    color: var(--color-text);
   }
+}
+
+@media (max-width: 600px) {
+  .cart-page__item { grid-template-columns: 64px minmax(0, 1fr); gap: $space-16; }
+  .cart-page__item-image { width: 64px; height: 64px; }
+  .cart-page__item-subtotal { grid-column: 2; }
+  .cart-page__item-title { overflow-wrap: anywhere; }
 }

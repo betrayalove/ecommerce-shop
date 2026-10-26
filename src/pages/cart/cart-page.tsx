@@ -1,3 +1,4 @@
+import { ProductImage } from '@/shared/ui/product-image/product-image';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import type { RootState } from '@/app/store';
@@ -34,7 +35,7 @@ export function CartPage() {
         <ul className="cart-page__list">
           {items.map((item) => (
             <li key={item.product.id} className="cart-page__item">
-              <img
+              <ProductImage
                 src={item.product.image}
                 alt={item.product.title}
                 className="cart-page__item-image"

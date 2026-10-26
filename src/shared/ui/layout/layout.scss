@@ -5,14 +5,10 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: $color-bg-light;
+  background-color: var(--color-bg);
 
   &__main {
     flex: 1;
     padding: $space-24 0 $space-48;
   }
-}
-
-[data-theme='dark'] .layout {
-  background-color: $color-bg-dark;
 }

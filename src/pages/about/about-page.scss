@@ -9,12 +9,12 @@
   &__title {
     @include typography-h1;
     margin: 0 0 $space-24;
-    color: $color-text-primary;
+    color: var(--color-text);
   }
 
   &__text {
     @include typography-body;
-    color: $color-text-secondary;
+    color: var(--color-text-secondary);
     margin: 0;
     max-width: 60ch;
   }

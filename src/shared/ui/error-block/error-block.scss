@@ -9,7 +9,7 @@
 
   &__message {
     @include typography-body;
-    color: $color-error;
+    color: var(--color-danger);
     margin: 0;
   }
 }

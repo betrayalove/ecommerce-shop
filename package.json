@@ -16,6 +16,7 @@
     "setup": "npm ci && npm --prefix server ci"
   },
   "dependencies": {
+    "@fontsource/inter": "5.2.8",
     "@reduxjs/toolkit": "^2.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -23,17 +24,6 @@
     "react-router-dom": "^7.18.4"
   },
   "devDependencies": {
-    "concurrently": "^9.1.2",
-    "css-loader": "^7.1.2",
-    "html-webpack-plugin": "^5.6.3",
-    "mini-css-extract-plugin": "^2.9.2",
-    "sass": "^1.69.5",
-    "sass-loader": "^16.0.4",
-    "style-loader": "^4.0.0",
-    "ts-loader": "^9.5.1",
-    "webpack": "^5.96.1",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^6.1.0",
     "@playwright/test": "^1.58.2",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
@@ -41,11 +31,22 @@
     "@types/jest": "^29.5.11",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
+    "concurrently": "^9.1.2",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "mini-css-extract-plugin": "^2.9.2",
+    "sass": "^1.69.5",
+    "sass-loader": "^16.0.4",
+    "style-loader": "^4.0.0",
     "ts-jest": "^29.1.1",
-    "typescript": "^5.3.3"
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.3",
+    "webpack": "^5.96.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^6.1.0"
   },
   "engines": {
     "node": "24.x"

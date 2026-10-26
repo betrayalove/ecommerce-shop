@@ -9,7 +9,7 @@
   &__title {
     @include typography-h1;
     margin: 0 0 $space-32;
-    color: $color-text-primary;
+    color: var(--color-text);
   }
 
   &__grid {
@@ -17,8 +17,4 @@
     grid-template-columns: repeat(auto-fill, minmax(clamp(280px, 30vw, 320px), 1fr));
     gap: $space-24;
   }
-}
-
-[data-theme='dark'] .catalog-page .catalog-page__title {
-  color: $color-text-primary-dark;
 }

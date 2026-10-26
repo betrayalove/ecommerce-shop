@@ -1,46 +1,44 @@
 @use '@/shared/styles/variables' as *;
 @use '@/shared/styles/mixins' as *;
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+:root {
+  color-scheme: light;
+  --color-bg: #f8fafc;
+  --color-surface: #fff;
+  --color-muted: #f1f5f9;
+  --color-text: #0f172a;
+  --color-text-secondary: #475569;
+  --color-border: #e2e8f0;
+  --color-link: #2563eb;
+  --color-danger: #dc2626;
 }
 
-html {
-  font-size: 16px;
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #020617;
+  --color-surface: #0f172a;
+  --color-muted: #1e293b;
+  --color-text: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-border: #334155;
+  --color-link: #60a5fa;
+  --color-danger: #f87171;
 }
 
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; }
 body {
   margin: 0;
   font-family: $font-family;
   @include typography-body;
-  color: $color-text-primary;
-  background-color: $color-bg-light;
-  -webkit-font-smoothing: antialiased;
+  color: var(--color-text);
+  background-color: var(--color-bg);
 }
-
-[data-theme='dark'] body {
-  color: $color-text-primary-dark;
-  background-color: $color-bg-dark;
-}
-
-a {
-  color: inherit;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-button {
-  font-family: inherit;
-}
-
-input,
-select,
-textarea {
-  font-family: inherit;
-}
+h1 { @include typography-h1; margin: 0 0 $space-24; }
+h2 { @include typography-h2; }
+a { color: inherit; }
+img { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea { font-family: inherit; }
+input, select, textarea { background: var(--color-surface); color: var(--color-text); max-width: 100%; }
+input::placeholder, textarea::placeholder { color: var(--color-text-secondary); opacity: 1; }
+:focus-visible { outline: 2px solid var(--color-link); outline-offset: 3px; }

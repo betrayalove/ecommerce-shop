@@ -28,7 +28,7 @@ export function RegisterForm() {
 
   return (
     <form className="auth-form" onSubmit={handleSubmit}>
-      <h2 className="auth-form__title">Регистрация</h2>
+      <h1 className="auth-form__title">Регистрация</h1>
       {error && (
         <ErrorBlock
           message={'data' in error ? String((error as { data?: { error?: string } }).data?.error) : 'Ошибка регистрации'}

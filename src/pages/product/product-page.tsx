@@ -1,3 +1,4 @@
+import { ProductImage } from '@/shared/ui/product-image/product-image';
 import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useGetProductByIdQuery } from '@/shared/api/products-api';
@@ -44,7 +45,7 @@ export function ProductPage() {
       <div className="product-page__container">
         <div className="product-page__content">
           <div className="product-page__image-wrap">
-            <img
+            <ProductImage
               src={product.image}
               alt={product.title}
               className="product-page__image"

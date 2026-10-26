@@ -2,8 +2,9 @@
 @use '@/shared/styles/mixins' as *;
 
 .header {
-  background-color: $color-surface-light;
+  background-color: var(--color-surface);
   box-shadow: $shadow-card;
+  border-bottom: 1px solid var(--color-border);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -13,6 +14,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     gap: $space-16;
     padding-top: $space-16;
     padding-bottom: $space-16;
@@ -20,7 +22,7 @@
 
   &__logo {
     @include typography-h2;
-    color: $color-primary;
+    color: var(--color-link);
     text-decoration: none;
     font-weight: 700;
 
@@ -38,11 +40,11 @@
 
   &__link {
     @include typography-body;
-    color: $color-text-primary;
+    color: var(--color-text);
     text-decoration: none;
 
     &:hover {
-      color: $color-primary;
+      color: var(--color-link);
     }
 
     &--cart {
@@ -61,26 +63,26 @@
 
   &__user {
     @include typography-body;
-    color: $color-text-secondary;
+    color: var(--color-text-secondary);
   }
 
   &__theme-toggle {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 44px;
+    height: 44px;
     padding: 0;
     border: none;
     border-radius: $radius-button;
     background: transparent;
-    color: $color-text-primary;
+    color: var(--color-text);
     cursor: pointer;
     transition: color 0.2s, background-color 0.2s;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.06);
-      color: $color-primary;
+      background-color: var(--color-muted);
+      color: var(--color-link);
     }
 
     svg {
@@ -90,28 +92,8 @@
   }
 }
 
-[data-theme='dark'] .header {
-  background-color: $color-surface-dark;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-
-  .header__link {
-    color: $color-text-primary-dark;
-
-    &:hover {
-      color: $color-primary;
-    }
-  }
-
-  .header__user {
-    color: $color-text-secondary;
-  }
-
-  .header__theme-toggle {
-    color: $color-text-primary-dark;
-
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: $color-primary;
-    }
-  }
+@media (max-width: 767px) {
+  .header { position: static; }
+  .header__nav { width: 100%; gap: $space-8 $space-16; }
+  .header__user { overflow-wrap: anywhere; }
 }

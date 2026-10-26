@@ -21,7 +21,7 @@
     aspect-ratio: 4 / 3;
     border-radius: $radius-card;
     overflow: hidden;
-    background: #f1f5f9;
+    background: var(--color-muted);
   }
 
   &__image {
@@ -33,18 +33,18 @@
   &__title {
     @include typography-h1;
     margin: 0 0 $space-16;
-    color: $color-text-primary;
+    color: var(--color-text);
   }
 
   &__price {
     @include typography-h2;
-    color: $color-primary;
+    color: var(--color-link);
     margin: 0 0 $space-24;
   }
 
   &__description {
     @include typography-body;
-    color: $color-text-secondary;
+    color: var(--color-text-secondary);
     margin: 0 0 $space-32;
   }
 
@@ -65,7 +65,7 @@
   &__quantity-input {
     width: 80px;
     padding: 8px $space-16;
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--color-border);
     border-radius: $radius-button;
     font-size: $font-size-body;
   }
